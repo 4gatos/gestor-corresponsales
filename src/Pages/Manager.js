@@ -1,10 +1,12 @@
 import React from 'react';
+import Menu from '../Components/Layout/Menu';
+
 
 const Manager = () => {
   return (
-    <div>
-      Manager
-    </div>
+    <main>
+      <Menu />
+    </main>
   );
 };
 
