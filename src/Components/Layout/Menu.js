@@ -1,10 +1,13 @@
 import React from 'react';
+import MenuTab from './MenuTab';
 
 const Menu = () => {
   return (
     <div className="menu">
       <div className="menu-wrapper">
-        Menu
+        <ul className="menu-list">
+          <MenuTab />
+        </ul>
       </div>
     </div>
   );

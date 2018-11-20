@@ -1,1 +1,1 @@
-.menu{width:300px;height:100vh;background-color:#2f3e4e}
+body{font-family:'Roboto',sans-serif}strong{font-weight:700}.menu{width:300px;height:100vh;background-color:#2f3e4e;}.menu .menu-wrapper{color:#fff}.main-content{width:100%;background-color:#e5e5e5}.header{background-color:#00a8e1;padding:32px;color:#fff;}.header.big{text-align:center;padding:64px 128px;}.header.big h1{font-size:3rem;font-weight:700;margin-bottom:16px}.header.big .welcome-description{font-size:1.25rem;font-weight:300;line-height:1.4rem}main{width:100%;height:100%;display:flex;flex-direction:row}

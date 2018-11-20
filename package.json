@@ -11,8 +11,8 @@
   "scripts": {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-css": "stylus -c src/stylus/main.styl --out src/static/main.css",
-    "watch-css": "npm run build-css && stylus -c -w src/stylus/main.styl --out src/static/main.css",
+    "build-css": "stylus -c src/stylus/main.styl --out src/static/css/main.css",
+    "watch-css": "npm run build-css && stylus -c -w src/stylus/main.styl --out src/static/css/main.css",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
