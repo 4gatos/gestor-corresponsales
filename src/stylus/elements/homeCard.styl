@@ -1,0 +1,63 @@
+.home-cards
+  margin-top 6 * $defaultSize
+  display flex
+  flex-wrap wrap
+  justify-content space-between
+
+  .card
+    display flex
+    flex-wrap wrap
+    width 30%
+    max-width 300px
+    margin-bottom 3 * $defaultSize
+
+    > div
+      width 100%
+
+    .card-img
+      height 100px
+      overflow hidden
+      position relative
+
+      img
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        width 100%
+        z-index 1
+
+      p
+        z-index 2
+
+    .card-body
+      background-color $white
+      padding 2 * $defaultSize
+      border-left 1px solid $greyBorder
+      border-right 1px solid $greyBorder
+      border-bottom 1px solid $greyBorder
+
+      h3
+        font-weight 700
+        font-size 1.15rem
+        margin-bottom $defaultSize
+
+      p
+        color $blackText
+        font-weight 300
+        font-size 0.85rem
+        line-height 1rem
+        margin-bottom $defaultSize
+
+      .card-buttons
+        a
+          text-decoration none
+          margin-right $defaultSize
+          font-size 0.85rem
+          font-weight 700
+
+          &.add
+            color $blackText
+          
+          &.edit
+            color $green

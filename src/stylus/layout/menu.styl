@@ -5,3 +5,35 @@
 
   .menu-wrapper
     color $white
+    height 100%
+
+    .logo
+      padding 3 * $defaultSize 3 * $defaultSize 0
+    .logo img
+      width 100%
+      cursor pointer
+
+    .menu-list
+      margin-top 4 * $defaultSize
+
+      .menu-tab
+
+        font-size 1.25rem
+
+        a
+          text-decoration none
+          padding $defaultSize * 2 3 * $defaultSize
+          color $menuTabs
+          display block
+          width 100%
+          transition all 0.3s ease
+          display flex
+          align-items center
+
+          &:hover
+            background-color $primary
+            color white
+
+          .icon
+            padding-right $defaultSize * 2
+            font-size 1.75rem

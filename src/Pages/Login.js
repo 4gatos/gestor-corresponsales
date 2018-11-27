@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div>
       Login
-      <a><Link to="/gestor">Ir al gestor</Link></a>
+      <Link to="/gestor">Ir al gestor</Link>
     </div>
   );
 };
