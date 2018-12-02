@@ -31,9 +31,18 @@
           align-items center
 
           &:hover
+          &.current
             background-color $primary
             color white
 
           .icon
             padding-right $defaultSize * 2
             font-size 1.75rem
+
+        ul
+          a
+          a.active
+            background-color $tertiary
+
+          a.active
+            color $white

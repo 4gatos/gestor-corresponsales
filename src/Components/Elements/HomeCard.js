@@ -5,7 +5,7 @@ const HomeCard = () => {
   return (
     <div className="card">
       <div className="card-img">
-        <img src="./img/batallas.png" alt=""/>
+        <img src="/img/batallas.png" alt=""/>
       </div>
       <div className="card-body">
         <h3>Título</h3>

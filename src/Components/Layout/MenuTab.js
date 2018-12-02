@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Icon from '../Basics/Icon';
 
-const MenuTab = ({ icon, text, link }) => {
+const MenuTab = ({ icon, text, link, children, urls }) => {
   return (
     <li className="menu-tab">
-      <Link to={link}>
+      <NavLink to={link} className={urls.indexOf(window.location.pathname) > -1 ? 'current' : ''}>
         <Icon icon={icon} />
         <span className="tab-text">{text}</span>
-      </Link>
+      </NavLink>
+      {urls.indexOf(window.location.pathname) > -1 && children}
     </li>
   );
 };
