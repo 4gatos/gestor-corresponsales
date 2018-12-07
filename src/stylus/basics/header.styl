@@ -3,6 +3,33 @@
   padding 4 * $defaultSize
   color $white
 
+  &:not(.big)
+    display flex
+    align-items center
+
+    .subtitle
+      font-size 1rem
+      font-weight 700
+      display flex
+      align-items center
+      padding-top 4px
+
+      &:before
+        content ''
+        display inline-block
+        width 2px
+        height 3 * $defaultSize
+        background-color $white
+        margin 0 2 * $defaultSize
+        margin-bottom 2px
+
+  h1
+    font-size 2rem
+    font-weight 700
+
+    span
+      padding-right 2 * $defaultSize
+
   &.big
     text-align center
     padding 8 * $defaultSize 16 * $defaultSize
