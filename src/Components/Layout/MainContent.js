@@ -6,6 +6,8 @@ import User from '../../Pages/User';
 import Home from '../../Pages/Home';
 import Investigation from '../../Pages/Investigation';
 import Historic from '../../Pages/Historic';
+import Correspondants from '../../Pages/Correspondants';
+import Battles from '../../Pages/Battles';
 import { ROUTES } from '../../config/constants';
 
 const MainContent = () => {
@@ -16,6 +18,7 @@ const MainContent = () => {
         {ROUTES.map(route => (
           <Route
             exact
+            key={route.path}
             path={route.path}
             component={() => <HeaderSmall icon={route.icon} title={route.title} subtitle={route.subtitle} />}
           />
@@ -24,8 +27,8 @@ const MainContent = () => {
       <Switch>
         <Route exact path='/gestor' component={Home} />
         <Route path='/gestor/usuario' component={User} />
-        <Route path='/gestor/corresponsales' component={Investigation} />
-        <Route path='/gestor/batallas' component={Investigation} />
+        <Route path='/gestor/corresponsales' component={Correspondants} />
+        <Route path='/gestor/batallas' component={Battles} />
         <Route path='/gestor/grupo-de-investigacion' component={Investigation} />
         <Route path='/gestor/marco-historico' component={Historic} />
       </Switch>
