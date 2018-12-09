@@ -8,7 +8,7 @@ class Historic extends Component {
         <div className="box mg-top">
             <h2>Edita el contenido del Marco Histórico</h2>
             <TextEditor />
-            <button style={{ marginTop: '16px' }} className="btn btn-primary">Guardar cambios</button>
+            <button className="btn btn-primary mg-top-small">Guardar cambios</button>
         </div>
       </div>
     );

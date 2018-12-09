@@ -1,0 +1,39 @@
+.field
+  display flex
+  flex-direction column
+  color $greyList
+
+  +.field
+    margin-top $defaultSize * 2
+
+  &.full
+    width 100%
+
+  &.half
+    width 50%
+
+  label
+    margin-bottom $defaultSize
+    font-size 0.9rem
+
+  input
+  textarea
+    outline none
+    border 1px solid $primary
+    padding $defaultSize
+    font-size 1rem
+
+  textarea
+    min-height 200px
+
+  .field-errors
+    display flex
+    flex-direction column
+    margin-top $defaultSize
+
+    .error
+      color $error
+      font-size 0.9rem
+
+      +.error
+        margin-top $defaultSize

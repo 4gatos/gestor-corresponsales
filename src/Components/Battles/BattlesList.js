@@ -3,36 +3,36 @@ import List from '../Elements/List';
 import Loader from '../Basics/Loader';
 import { apiUrl } from '../../config/constants';
 
-class CorrespondantsList extends Component {
+class BattlesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      correspondants: [],
+      battles: [],
       loading: true,
     }
     this.deleteItemFromList = this.deleteItemFromList.bind(this);
   }
 
   componentDidMount() {
-    fetch(`${apiUrl}/correspondants`)
+    fetch(`${apiUrl}/battles`)
       .then(response => response.json())
-      .then(correspondants => this.setState({ correspondants, loading: false }));
+      .then(battles => this.setState({ battles, loading: false }));
   }
 
   deleteItemFromList(value) {
-    this.setState(prevState => ({ correspondants: prevState.correspondants.filter(correspondant => correspondant.slug !== value) }))
+    this.setState(prevState => ({ battles: prevState.battles.filter(battles => battles.slug !== value) }))
   }
   
   render() {
-    const { loading, correspondants } = this.state;
+    const { loading, battles } = this.state;
     return (
       <React.Fragment>
-        <h2>Lista de corresponsales</h2>
+        <h2>Lista de batallas</h2>
         {!loading ? (
           <List
-            items={correspondants}
-            url={`${apiUrl}/correspondants`}
-            noItemsMsg="No hay corresponsales"
+            items={battles}
+            url={`${apiUrl}/battles`}
+            noItemsMsg="No hay batallas"
             deleteItemFromList={this.deleteItemFromList}
           />
          ) : <Loader />}
@@ -41,4 +41,4 @@ class CorrespondantsList extends Component {
   }
 }
 
-export default CorrespondantsList;
+export default BattlesList;

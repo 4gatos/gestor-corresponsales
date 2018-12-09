@@ -6,7 +6,20 @@
     display flex
     align-items center
     justify-content space-between
-    color $greyText
+    color $greyList
+    position relative
+
+    +.list-item
+      margin-top $defaultSize * 2
+    
+    &:before
+      position absolute
+      top 0
+      left 0
+      height 100%
+      content ''
+      width $defaultSize
+      background-color $primary
 
     .item-info
       display flex
@@ -22,3 +35,10 @@
 
       img
         width 100%
+
+    .item-actions
+      a
+      button
+        background-color transparent
+        color $greyList
+        font-size 1.5rem

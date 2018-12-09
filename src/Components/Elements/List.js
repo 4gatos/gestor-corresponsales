@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Icon from '../Basics/Icon';
+import { Link } from 'react-router-dom';
 
 class List extends PureComponent {
   constructor(props) {
@@ -33,6 +34,9 @@ class List extends PureComponent {
                   {item.name}
                 </div>
                 <div className="item-actions">
+                  <Link to="/gestor">
+                    <Icon icon="icon-edit" />
+                  </Link>
                   <button value={item.slug} onClick={this.deleteItem}>
                     <Icon icon="icon-trash" />
                   </button>

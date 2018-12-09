@@ -1,5 +1,6 @@
 .main-content
   width 100%
+  margin-left 300px
   background-color $background
 
   .box
@@ -7,3 +8,19 @@
 
     &.mg-top
       margin-top 6 * $defaultSize
+
+    .panel
+      background-color $white
+      padding $defaultSize * 3
+      width 100%
+      border 2px solid $greyBorder
+      margin-top $defaultSize * 2
+
+      +.panel
+        margin-top $defaultSize * 2
+
+      .panel-title
+        color $greyList
+        font-size 1.25rem
+        font-weight 700
+        margin-bottom $defaultSize * 3

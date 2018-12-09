@@ -56,3 +56,12 @@ export const ROUTES = [
     subtitle: 'Editar campos'
   },
 ];
+
+export function getErrorText(error) {
+  switch (error) {
+    case 'error_required':
+      return 'Campo requerido';
+    default:
+      return 'Error';
+  }
+}
