@@ -1,0 +1,18 @@
+.tip
+  width 100%
+  padding $defaultSize * 2 $defaultSize * 2 $defaultSize * 2 $defaultSize * 2
+  border 1px solid $greyBorder
+  position relative
+
+  &:before
+    content ''
+    position absolute
+    top 0
+    left 0
+    height 100%
+    width 4px
+    background-color $green
+
+  p
+    font-size 0.85rem
+    color $greyList

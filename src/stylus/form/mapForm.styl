@@ -1,0 +1,44 @@
+.mapboxgl-map
+  width 100%
+  height 300px
+
+.map-with-coordinates
+  display flex
+  margin-top $defaultSize * 2
+
+  .coordinates
+    padding-right $defaultSize * 3
+
+    .coordinates-with-label
+      label
+        font-size 0.9rem
+        color $greyList
+        margin-bottom $defaultSize
+        display block
+
+        margin-top $defaultSize * 2
+    
+    .coordinates-input-wrapper
+      position relative
+
+      .coordinates-icon
+        position absolute
+        top 0
+        left 0
+        height 100%
+        display flex
+        justify-content center
+        align-items center
+        padding 0 $defaultSize
+        border-right 1px solid $primary
+        color $primary
+      
+      input
+
+        outline none
+        border 1px solid $primary
+        padding $defaultSize
+        font-size 1rem
+        padding-left $defaultSize * 5
+        min-width 200px
+        width 100%

@@ -4,6 +4,7 @@ import FormField from '../Form/FormField';
 import TextArea from '../Form/TextArea';
 import { apiUrl } from '../../config/constants';
 import Loader from '../Basics/Loader';
+import MapFormBasic from '../Form/MapFormBasic';
 
 class BattleForm extends Component {
   constructor(props) {
@@ -136,6 +137,7 @@ class BattleForm extends Component {
               })}
               errors={getFieldError('geographicDescription')}
             />
+            <MapFormBasic />
           </div>
           <div className="panel">
             <p className="panel-title">Patrimonio arquitectónico</p>
