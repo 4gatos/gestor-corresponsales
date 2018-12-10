@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import Icon from '../Basics/Icon';
 import Tip from '../Basics/Tip';
+import { MAPBOX } from '../../config/constants';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicGxhc28iLCJhIjoiY2puZG0weXZ1Mjl6aDNxcmZybXV0NmV6NCJ9.Vovat6h7DIDOWpa5j4P0_Q';
+mapboxgl.accessToken = MAPBOX;
 
 class MapFormBasic extends Component {
   constructor(props) {
@@ -18,11 +19,11 @@ class MapFormBasic extends Component {
 
     this.mapContainer = React.createRef();
     this.onChangeMarker = this.onChangeMarker.bind(this);
+    this.assignMarker = this.assignMarker.bind(this);
   }
 
   componentDidMount() {
     const { lng, lat, zoom } = this.state;
-
     this.map = new mapboxgl.Map({
       container: this.mapContainer.current,
       style: 'mapbox://styles/mapbox/basic-v9',
@@ -51,20 +52,32 @@ class MapFormBasic extends Component {
       this.setState({ markerLat: event.target.value })
     }
   }
+
+  assignMarker(event) {
+    event.preventDefault();
+    const { markerLat, markerLng } = this.state;
+    const { onChangeMarker } = this.props;
+    if (markerLat && markerLat !== '' && markerLng && markerLng !== '') {
+      onChangeMarker({ markerLng, markerLat });
+    }
+  }
   
   render() {
     const { markerLat, markerLng } = this.state;
+    const { lat, lng } = this.props;
     if (this.map && markerLat && markerLng) {
       if (this.marker) {
         this.marker.remove();
       }
       this.marker = new mapboxgl.Marker().setLngLat([markerLng, markerLat]).addTo(this.map);
+    } else if (this.map && lat && lng) {
+      this.marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(this.map);
     }
     return (
       <div className="map-with-coordinates">
         <div className="coordinates">
           <Tip>
-            Para agregar una localización, introduce unas coordenadas o selecciona un punto en el mapa.
+            Para agregar una localización, introduce unas coordenadas o selecciona un punto en el mapa. Asigna el marcador y guarda los cambios.
           </Tip>
           <div className="coordinates-with-label">
             <label htmlFor="lng">Longitud</label>
@@ -72,7 +85,7 @@ class MapFormBasic extends Component {
               <div className="coordinates-icon">
                 <Icon icon="icon-map-coordinates" />
               </div>
-              <input id="lng" type="number" min="-90" max="90" value={markerLng} onChange={this.onChangeMarker} />
+              <input id="lng" type="number" min="-90" max="90" value={markerLng || lng} onChange={this.onChangeMarker} autoComplete="off" />
             </div>
           </div>
           <div className="coordinates-with-label">
@@ -81,9 +94,12 @@ class MapFormBasic extends Component {
               <div className="coordinates-icon">
                 <Icon icon="icon-map-coordinates" />
               </div>
-              <input id="lat" type="number" min="-90" max="90" value={markerLat} onChange={this.onChangeMarker} />
+              <input id="lat" type="number" min="-90" max="90" value={markerLat || lat} onChange={this.onChangeMarker} autoComplete="off" />
             </div>
           </div>
+          <button className="btn btn-primary mg-top-small" onClick={this.assignMarker}>
+            Asignar marcador
+          </button>
         </div>
         <div ref={this.mapContainer}>
           

@@ -32,6 +32,7 @@ class BattlesList extends Component {
           <List
             items={battles}
             url={`${apiUrl}/battles`}
+            appUrl="/gestor/batallas"
             noItemsMsg="No hay batallas"
             deleteItemFromList={this.deleteItemFromList}
           />

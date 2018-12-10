@@ -11,6 +11,7 @@ const Battles = () => {
           <Switch>
             <Route exact path="/gestor/batallas/todas" component={BattlesList} />
             <Route exact path="/gestor/batallas/nueva-batalla" component={BattleForm} />
+            <Route exact path="/gestor/batallas/:slug" component={BattleForm} />
           </Switch>
         </div>
       </div>

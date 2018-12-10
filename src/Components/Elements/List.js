@@ -17,7 +17,7 @@ class List extends PureComponent {
   }
 
   render() {
-    const { items, noItemsMsg} = this.props;
+    const { items, noItemsMsg, appUrl} = this.props;
     return (
       <ul className="list">
         {
@@ -34,7 +34,7 @@ class List extends PureComponent {
                   {item.name}
                 </div>
                 <div className="item-actions">
-                  <Link to="/gestor">
+                  <Link to={`${appUrl}/${item.slug}`}>
                     <Icon icon="icon-edit" />
                   </Link>
                   <button value={item.slug} onClick={this.deleteItem}>

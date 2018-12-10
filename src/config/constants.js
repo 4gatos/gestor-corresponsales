@@ -44,6 +44,12 @@ export const ROUTES = [
     subtitle: 'Añadir batalla'
   },
   {
+    path: '/gestor/batallas/:slug',
+    icon: 'icon-swords',
+    title: 'Batallas',
+    subtitle: 'Editar batalla'
+  },
+  {
     path: '/gestor/grupo-de-investigacion',
     icon: 'icon-lens',
     title: 'Grupo de investigación',
@@ -65,3 +71,5 @@ export function getErrorText(error) {
       return 'Error';
   }
 }
+
+export const MAPBOX = 'pk.eyJ1IjoicGxhc28iLCJhIjoiY2puZG0weXZ1Mjl6aDNxcmZybXV0NmV6NCJ9.Vovat6h7DIDOWpa5j4P0_Q';
