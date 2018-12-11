@@ -67,9 +67,17 @@ export function getErrorText(error) {
   switch (error) {
     case 'error_required':
       return 'Campo requerido';
+    case 'error_email_invalid':
+      return 'Email no valido';
     default:
       return 'Error';
   }
 }
 
 export const MAPBOX = 'pk.eyJ1IjoicGxhc28iLCJhIjoiY2puZG0weXZ1Mjl6aDNxcmZybXV0NmV6NCJ9.Vovat6h7DIDOWpa5j4P0_Q';
+
+const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+export const checkEmail = (_, value, cb) => (isEmail(value) ? cb() : cb(new Error('error_email_invalid')));
+
+export const isEmail = email => email && emailRegExp.test(email);
