@@ -11,12 +11,15 @@ const toolbarOptions = {
 
 class TextEditor extends Component {
   render() {
+    const { editorState, onChange } = this.props;
     return (
       <Editor
+        editorState={editorState}
         wrapperClassName="text-editor"
         editorClassName="text-editor-body"
         toolbarClassName="text-editor-toolbar"
         toolbar={toolbarOptions}
+        onEditorStateChange={onChange}
       />
     );
   }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "draft-js": "^0.10.5",
+    "draft-js-export-html": "^1.2.0",
     "mapbox-gl": "^0.52.0-beta.1",
     "rc-form": "^2.2.7",
     "react": "^16.6.3",

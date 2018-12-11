@@ -3,6 +3,8 @@ import { createForm } from '../../lib/form';
 import FormField from '../Form/FormField';
 import { apiUrl } from '../../config/constants';
 import Loader from '../Basics/Loader';
+import TextArea from '../Form/TextArea';
+import MapFormLines from '../Form/MapFormLines';
 
 class CorrespondantsForm extends Component {
   constructor(props) {
@@ -11,38 +13,64 @@ class CorrespondantsForm extends Component {
       loading: false,
     }
     this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeRoute = this.onChangeRoute.bind(this);
+  }
+
+  componentDidMount() {
+    const { match } = this.props;
+    if (match.params.slug) {
+      fetch(`${apiUrl}/correspondants/${match.params.slug}`)
+        .then(response => response.json())
+        .then(correspondant => this.setState({ correspondant, loading: false }));
+    }
+  }
+
+  onChangeRoute(coordinates) {
+    this.setState({ coordinates });
   }
 
   onSubmit(e) {
-    const { form } = this.props;
+    const { form, match } = this.props;
+    const { coordinates } = this.state;
     e.preventDefault();
     form.validateFields(
       (fieldErrors, fields) => {
         const hasErrors = fieldErrors
           && Object.keys(fieldErrors).some(key => fieldErrors[key].errors.length > 0);
         if (!hasErrors) {
+          if (coordinates && coordinates.length > 0) {
+            fields.coordinates = coordinates;
+          }
           this.setState({ loading: true });
-          fetch(`${apiUrl}/correspondants`, {
-            method: 'POST',
+          fetch(`${apiUrl}/correspondants${match.params.slug ? `/${match.params.slug}` : ''}`, {
+            method: match.params.slug ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(fields)
-          }).then(() => {
-            form.resetFields();
-            this.setState({ loading: false });
-          }).catch(error => {
-            console.log(error);
-            this.setState({ loading: false });
-          });
+          })
+            .then(response => {
+              if (!match.params.slug) {
+                this.props.history.push('/gestor/corresponsales/todos');
+              } else {
+                response.json()
+                  .then(correspondant => {
+                    this.setState({ loading: false, correspondant })
+                  });
+              }
+            })
+            .catch(error => {
+              console.log(error);
+              this.setState({ loading: false });
+            });
         }
       }
     );
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading, correspondant } = this.state;
     const { form } = this.props;
     const { getFieldProps, getFieldError } = form;
     return (
@@ -58,7 +86,7 @@ class CorrespondantsForm extends Component {
               type="text"
               required
               {...getFieldProps('name', {
-                  initialValue: '',
+                  initialValue: correspondant ? correspondant.name : '',
                   valuePropName: 'value',
                   rules: [{ required: true }]
               })}
@@ -71,7 +99,7 @@ class CorrespondantsForm extends Component {
               type="text"
               required
               {...getFieldProps('country', {
-                  initialValue: '',
+                  initialValue: correspondant ? correspondant.country : '',
                   valuePropName: 'value',
                   rules: [{ required: true }]
               })}
@@ -84,7 +112,7 @@ class CorrespondantsForm extends Component {
               type="text"
               required
               {...getFieldProps('date', {
-                  initialValue: '',
+                  initialValue: correspondant ? correspondant.date : '',
                   valuePropName: 'value',
                   rules: [{ required: true }]
               })}
@@ -97,11 +125,63 @@ class CorrespondantsForm extends Component {
               type="text"
               required
               {...getFieldProps('newspaper', {
-                  initialValue: '',
+                  initialValue: correspondant ? correspondant.newspaper : '',
                   valuePropName: 'value',
                   rules: [{ required: true }]
               })}
               errors={getFieldError('newspaper')}
+            />
+          </div>
+          <div className="panel">
+            <p className="panel-title">Detalles históricos</p>
+            <TextArea
+              className="full"
+              label="Añade la historia de este corresponsal"
+              id="historicDetails"
+              type="text"
+              required
+              {...getFieldProps('historicDetails', {
+                  initialValue: correspondant ? correspondant.historicDetails : '',
+                  valuePropName: 'value',
+                  rules: [{ required: true }]
+              })}
+              errors={getFieldError('historicDetails')}
+            />
+          </div>
+          <div className="panel">
+            <p className="panel-title">Descripción geográfica</p>
+            <TextArea
+              className="full"
+              label="Añade la descripción geográfica de esta batalla"
+              id="geographicDescription"
+              type="text"
+              required
+              {...getFieldProps('geographicDescription', {
+                  initialValue: correspondant ? correspondant.geographicDescription : '',
+                  valuePropName: 'value',
+                  rules: [{ required: true }]
+              })}
+              errors={getFieldError('geographicDescription')}
+            />
+            <MapFormLines
+              onChangeRoute={this.onChangeRoute}
+              {...(correspondant && correspondant.coordinates ? { routeCoordinates: correspondant.coordinates } : null)}
+            />
+          </div>
+          <div className="panel">
+            <p className="panel-title">Documentación</p>
+            <TextArea
+              className="full"
+              label="Añade toda la documentación de este corresponsal"
+              id="documentation"
+              type="text"
+              required
+              {...getFieldProps('documentation', {
+                  initialValue: correspondant ? correspondant.documentation : '',
+                  valuePropName: 'value',
+                  rules: [{ required: true }]
+              })}
+              errors={getFieldError('documentation')}
             />
           </div>
           {loading ? <Loader /> : (

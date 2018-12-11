@@ -11,6 +11,7 @@ const Correspondants = () => {
           <Switch>
             <Route exact path="/gestor/corresponsales/todos" component={CorrespondantsList} />
             <Route exact path="/gestor/corresponsales/nuevo-corresponsal" component={CorrespondantsForm} />
+            <Route exact path="/gestor/corresponsales/:slug" component={CorrespondantsForm} />
           </Switch>
         </div>
       </div>

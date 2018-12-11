@@ -32,6 +32,7 @@ class CorrespondantsList extends Component {
           <List
             items={correspondants}
             url={`${apiUrl}/correspondants`}
+            appUrl="/gestor/corresponsales"
             noItemsMsg="No hay corresponsales"
             deleteItemFromList={this.deleteItemFromList}
           />

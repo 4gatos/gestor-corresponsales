@@ -9,6 +9,32 @@
   .coordinates
     padding-right $defaultSize * 3
 
+    .coordinates-list
+      display flex
+      flex-direction column
+      width 100%
+      overflow hidden
+
+      .coordinate-item
+        border 1px solid $primary
+        padding $defaultSize
+        width 100%
+        display flex
+        justify-content space-between
+        align-items center
+
+        button
+          background-color transparent
+          color $greyList
+          padding $defaultSize
+        
+        p
+          color $greyList
+          padding-left $defaultSize
+
+        +.coordinate-item
+          margin-top $defaultSize
+
     .coordinates-with-label
       label
         font-size 0.9rem
