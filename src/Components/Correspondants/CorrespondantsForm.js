@@ -5,6 +5,7 @@ import { apiUrl } from '../../config/constants';
 import Loader from '../Basics/Loader';
 import TextArea from '../Form/TextArea';
 import MapFormLines from '../Form/MapFormLines';
+import ImgFormField from '../Form/ImgFormField';
 
 class CorrespondantsForm extends Component {
   constructor(props) {
@@ -130,6 +131,21 @@ class CorrespondantsForm extends Component {
                   rules: [{ required: true }]
               })}
               errors={getFieldError('newspaper')}
+            />
+            <ImgFormField
+              className="full"
+              label="Imagen del corresponsal"
+              id="mainImg"
+              type="text"
+              form={form}
+              field="mainImg"
+              required
+              {...getFieldProps('mainImg', {
+                  initialValue: correspondant ? correspondant.mainImg : '',
+                  valuePropName: 'value',
+                  rules: [{ required: true }]
+              })}
+              errors={getFieldError('mainImg')}
             />
           </div>
           <div className="panel">

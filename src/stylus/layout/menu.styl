@@ -22,6 +22,7 @@
         font-size 1.25rem
 
         a
+        div
           text-decoration none
           padding $defaultSize * 2 3 * $defaultSize
           color $menuTabs
@@ -30,7 +31,16 @@
           transition all 0.3s ease
           display flex
           align-items center
+          cursor pointer
 
+          &.logout
+            background-color $logout
+
+            &:hover
+            &.current
+              background-color $logoutHover
+              color white
+            
           &:hover
           &.current
             background-color $primary

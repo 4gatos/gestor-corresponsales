@@ -8,6 +8,7 @@ import Investigation from '../../Pages/Investigation';
 import Historic from '../../Pages/Historic';
 import Correspondants from '../../Pages/Correspondants';
 import Battles from '../../Pages/Battles';
+import Media from '../../Pages/Media';
 import { ROUTES } from '../../config/constants';
 
 const MainContent = () => {
@@ -31,6 +32,7 @@ const MainContent = () => {
         <Route path='/gestor/batallas' component={Battles} />
         <Route path='/gestor/grupo-de-investigacion' component={Investigation} />
         <Route path='/gestor/marco-historico' component={Historic} />
+        <Route path='/gestor/medios' component={Media} />
       </Switch>
     </div>
   );

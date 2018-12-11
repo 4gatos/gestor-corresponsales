@@ -22,7 +22,6 @@ class Login extends Component {
           && Object.keys(fieldErrors).some(key => fieldErrors[key].errors.length > 0);
         if (!hasErrors) {
           this.setState({ loading: true });
-          console.log(fields);
           fetch(`${apiUrl}/session`, {
             method: 'POST',
             headers: {
@@ -33,13 +32,12 @@ class Login extends Component {
             body: JSON.stringify(fields)
           })
             .then(response => {
-              console.log(response);
               response.json()
                   .then(user => {
-                    console.log(user);
-                    this.setState({ loading: false });
+                    localStorage.setItem('userId', JSON.stringify(user.id))
+                    localStorage.setItem('userRole', JSON.stringify(user.role))
+                    this.props.history.push('/gestor');
                   });
-              // this.props.history.push('/gestor');
             })
             .catch(error => {
               console.log(error);

@@ -3,40 +3,39 @@ import List from '../Elements/List';
 import Loader from '../Basics/Loader';
 import { apiUrl } from '../../config/constants';
 
-class BattlesList extends Component {
+class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      battles: [],
+      users: [],
       loading: true,
     }
     this.deleteItemFromList = this.deleteItemFromList.bind(this);
   }
 
   componentDidMount() {
-    fetch(`${apiUrl}/battles`, {
-      method: 'GET',
-      credentials: 'include'
-    })
+    fetch(`${apiUrl}/users`, { method: 'get', credentials: 'include' })
       .then(response => response.json())
-      .then(battles => this.setState({ battles, loading: false }));
+      .then(users => this.setState({ users, loading: false }));
   }
 
   deleteItemFromList(value) {
-    this.setState(prevState => ({ battles: prevState.battles.filter(battles => battles.slug !== value) }))
+    this.setState(prevState => ({ users: prevState.users.filter(user => user.id !== value) }))
   }
   
   render() {
-    const { loading, battles } = this.state;
+    const { loading, users } = this.state;
     return (
       <React.Fragment>
-        <h2>Lista de batallas</h2>
+        <h2>Lista de usuarios</h2>
         {!loading ? (
           <List
-            items={battles}
-            url={`${apiUrl}/battles`}
-            appUrl="/gestor/batallas"
-            noItemsMsg="No hay batallas"
+            items={users}
+            url={`${apiUrl}/users`}
+            noImg
+            noActions
+            appUrl="/gestor/usuarios"
+            noItemsMsg="No hay usuarios"
             deleteItemFromList={this.deleteItemFromList}
           />
          ) : <Loader />}
@@ -45,4 +44,4 @@ class BattlesList extends Component {
   }
 }
 
-export default BattlesList;
+export default UserList;

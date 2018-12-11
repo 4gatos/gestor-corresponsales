@@ -61,6 +61,12 @@ export const ROUTES = [
     title: 'Marco histórico',
     subtitle: 'Editar campos'
   },
+  {
+    path: '/gestor/medios',
+    icon: 'icon-media',
+    title: 'Medios',
+    subtitle: 'Imagenes'
+  },
 ];
 
 export function getErrorText(error) {

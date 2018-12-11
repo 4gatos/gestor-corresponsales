@@ -1,4 +1,4 @@
-button {
+button, .btn {
     display: inline-block;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -17,18 +17,34 @@ button {
 }
 
 button:hover,
+.btn:hover,
+.btn:focus
 button:focus {
-    background: #0053ba;
+    background: #387ca3;
 }
 
-button:focus {
-    outline: 1px solid #fff;
-    outline-offset: -4px;
+button:focus, .btn:focus {
+    outline: none;
 }
 
-button:active {
+button:active, .btn:active {
     transform: scale(0.99);
 }
 
 .btn-primary
   background $primary
+
+.btn-img
+  width 100px
+  height 100px
+  display flex
+  align-items center
+  justify-content center
+  background-color transparent
+  border 1px dashed $greyList
+  color $greyList
+
+  &:hover
+    border-color $greyBorder
+    color $greyBorder
+    background-color transparent

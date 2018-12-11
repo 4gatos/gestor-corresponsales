@@ -1,0 +1,83 @@
+.media
+
+  .file-input-wrapper
+    width 100%
+    display flex
+    justify-content flex-end
+
+    input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    label
+      cursor pointer
+      color $white
+      display flex
+      justify-content space-around
+      align-items center
+      padding .6rem 1.5rem
+
+      .icon
+        padding-right $defaultSize
+
+.media-gallery
+  > div
+    display flex
+    justify-content space-around
+    flex-wrap wrap
+
+    .media-img
+      margin $defaultSize
+      width 100px
+      height 100px
+      display flex
+      justify-content center
+      align-items center
+      overflow hidden
+
+      &.selected
+        border 4px solid $primary
+      
+      img
+        height 100%
+
+.modal-wrapper
+  position fixed
+  z-index 999
+  width 100%
+  height 100vh
+  display flex
+  justify-content center
+  align-items center
+  background-color rgba(0,0,0,0.4)
+  top 0
+  left 0
+
+  .modal
+    background-color $white
+    padding $defaultSize * 5
+    display flex
+    flex-direction column
+    border-radius $defaultSize
+
+    .modal-title
+      padding-bottom $defaultSize * 5
+
+    .modal-body
+      max-height 50vh
+      overflow-y scroll
+
+    .modal-action
+      width 100%
+      display flex
+      justify-content flex-end
+      padding-top $defaultSize * 5
+
+      .btn
+        +.btn
+          margin-left $defaultSize

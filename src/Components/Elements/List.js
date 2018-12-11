@@ -17,7 +17,7 @@ class List extends PureComponent {
   }
 
   render() {
-    const { items, noItemsMsg, appUrl} = this.props;
+    const { items, noItemsMsg, appUrl, noImg, noActions} = this.props;
     return (
       <ul className="list">
         {
@@ -25,22 +25,26 @@ class List extends PureComponent {
             ? items.map(item => (
               <li
                 className="list-item"
-                key={item.slug}
+                key={item.slug || item.id}
               >
                 <div className="item-info">
-                  <div className="item-img">
-                    <img src="https://via.placeholder.com/50" alt={item.name} />
+                  {!noImg && (
+                    <div className="item-img">
+                      <img src="https://via.placeholder.com/50" alt={item.name} />
+                    </div>
+                  )}
+                  {item.name}{' '}{item.surname && item.surname}{item.role ? ` - Rol: ${item.role}` : ''}
+                </div>
+                {!noActions && (
+                  <div className="item-actions">
+                    <Link to={`${appUrl}/${item.slug}`}>
+                      <Icon icon="icon-edit" />
+                    </Link>
+                    <button value={item.slug} onClick={this.deleteItem}>
+                      <Icon icon="icon-trash" />
+                    </button>
                   </div>
-                  {item.name}
-                </div>
-                <div className="item-actions">
-                  <Link to={`${appUrl}/${item.slug}`}>
-                    <Icon icon="icon-edit" />
-                  </Link>
-                  <button value={item.slug} onClick={this.deleteItem}>
-                    <Icon icon="icon-trash" />
-                  </button>
-                </div>
+                )}
               </li>
             ))
             : <p>{noItemsMsg}</p>
