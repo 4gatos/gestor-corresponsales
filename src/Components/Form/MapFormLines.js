@@ -95,18 +95,20 @@ class MapFormLines extends PureComponent {
       };
 
       if (this.map && !this.map.getSource('trace')) {
-        this.map.addSource('trace', { type: 'geojson', data: sourceData });
-        this.map.addLayer({
-          id: "route",
-          type: "line",
-          source: "trace",
-          paint: {
-              "line-color": "#00A8E1",
-              "line-opacity": 0.75,
-              "line-width": 5
-          }
-        });
-        this.map.jumpTo({ 'center': coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0], 'zoom': 9 });
+        this.map.on('load', () => {
+          this.map.addSource('trace', { type: 'geojson', data: sourceData });
+          this.map.addLayer({
+            id: "route",
+            type: "line",
+            source: "trace",
+            paint: {
+                "line-color": "#00A8E1",
+                "line-opacity": 0.75,
+                "line-width": 5
+            }
+          });
+          this.map.jumpTo({ 'center': coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0], 'zoom': 9 });
+        })
       } else {
         this.map.getSource('trace').setData(sourceData);
       }

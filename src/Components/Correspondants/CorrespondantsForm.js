@@ -12,9 +12,11 @@ class CorrespondantsForm extends Component {
     super(props);
     this.state = {
       loading: false,
+      battle: null
     }
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeRoute = this.onChangeRoute.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -22,8 +24,21 @@ class CorrespondantsForm extends Component {
     if (match.params.slug) {
       fetch(`${apiUrl}/correspondants/${match.params.slug}`)
         .then(response => response.json())
-        .then(correspondant => this.setState({ correspondant, loading: false }));
+        .then(correspondant => this.setState({
+          correspondant,
+          loading: false,
+          ...(correspondant.battle ? { battle: correspondant.battle } : null)
+        }))
+        .then(() => {
+          fetch(`${apiUrl}/battles/names`)
+            .then(response => response.json())
+            .then(battles => this.setState({ battles }));
+        });
     }
+  }
+
+  handleChange(event) {
+    this.setState({battle: event.target.value});
   }
 
   onChangeRoute(coordinates) {
@@ -32,7 +47,7 @@ class CorrespondantsForm extends Component {
 
   onSubmit(e) {
     const { form, match } = this.props;
-    const { coordinates } = this.state;
+    const { coordinates, battle } = this.state;
     e.preventDefault();
     form.validateFields(
       (fieldErrors, fields) => {
@@ -43,6 +58,9 @@ class CorrespondantsForm extends Component {
             fields.coordinates = coordinates;
           }
           this.setState({ loading: true });
+          if (battle) {
+            fields.battle = battle;
+          }
           fetch(`${apiUrl}/correspondants${match.params.slug ? `/${match.params.slug}` : ''}`, {
             method: match.params.slug ? 'PUT' : 'POST',
             headers: {
@@ -72,7 +90,7 @@ class CorrespondantsForm extends Component {
   }
 
   render() {
-    const { loading, correspondant } = this.state;
+    const { loading, correspondant, battles, battle } = this.state;
     const { form } = this.props;
     const { getFieldProps, getFieldError } = form;
     return (
@@ -148,6 +166,21 @@ class CorrespondantsForm extends Component {
               })}
               errors={getFieldError('mainImg')}
             />
+            <ImgFormField
+              className="full"
+              label="Imagen de fondo para el corresponsal"
+              id="backgroundImg"
+              type="text"
+              form={form}
+              field="backgroundImg"
+              required
+              {...getFieldProps('backgroundImg', {
+                  initialValue: correspondant ? correspondant.backgroundImg : '',
+                  valuePropName: 'value',
+                  rules: [{ required: true }]
+              })}
+              errors={getFieldError('backgroundImg')}
+            />
           </div>
           <div className="panel">
             <p className="panel-title">Detalles históricos</p>
@@ -165,6 +198,17 @@ class CorrespondantsForm extends Component {
               errors={getFieldError('historicDetails')}
             />
           </div>
+          {battles && battles.length > 0 && (
+            <div className="panel">
+              <p className="panel-title">Batalla</p>
+              <select value={this.state.value} onChange={this.handleChange}>
+                <option value={''}>Ninguna</option>
+                {battles.map(({ id, name }) => (
+                  <option selected={battle === id} key={id} value={id}>{name}</option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="panel">
             <p className="panel-title">Descripción geográfica</p>
             <TextArea
@@ -199,6 +243,19 @@ class CorrespondantsForm extends Component {
                   rules: [{ required: true }]
               })}
               errors={getFieldError('documentation')}
+            />
+            <ImgFormField
+              className="full"
+              label="Imagen para la documentación"
+              id="documentationImg"
+              type="text"
+              form={form}
+              field="documentationImg"
+              {...getFieldProps('documentationImg', {
+                  initialValue: correspondant ? correspondant.documentationImg : '',
+                  valuePropName: 'value',
+              })}
+              errors={getFieldError('documentationImg')}
             />
           </div>
           {loading ? <Loader /> : (

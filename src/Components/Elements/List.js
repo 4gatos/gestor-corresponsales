@@ -13,7 +13,7 @@ class List extends PureComponent {
     const { url, deleteItemFromList } = this.props;
     const { value } = event.currentTarget;
 
-    fetch(`${url}/${value}`, { method: 'delete' })
+    fetch(`${url}/${value}`, { method: 'delete', credentials: 'include' })
       .then(response => response.status === 204 && deleteItemFromList(value));
   }
 

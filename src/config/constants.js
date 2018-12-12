@@ -32,6 +32,12 @@ export const ROUTES = [
     subtitle: 'Editar corresponsales'
   },
   {
+    path: '/gestor/corresponsales/:slug',
+    icon: 'icon-feather',
+    title: 'Corresponsales',
+    subtitle: 'Editar corresponsal'
+  },
+  {
     path: '/gestor/batallas/todas',
     icon: 'icon-swords',
     title: 'Batallas',

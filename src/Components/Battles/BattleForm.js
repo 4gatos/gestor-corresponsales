@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createForm } from '../../lib/form';
 import FormField from '../Form/FormField';
+import ImgFormField from '../Form/ImgFormField';
 import TextArea from '../Form/TextArea';
 import { apiUrl } from '../../config/constants';
 import Loader from '../Basics/Loader';
@@ -52,6 +53,7 @@ class BattleForm extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(fields)
           })
             .then(response => {
@@ -134,6 +136,21 @@ class BattleForm extends Component {
                   rules: [{ required: true }]
               })}
               errors={getFieldError('duration')}
+            />
+            <ImgFormField
+              className="full"
+              label="Imagen del corresponsal"
+              id="mainImg"
+              type="text"
+              form={form}
+              field="mainImg"
+              required
+              {...getFieldProps('mainImg', {
+                  initialValue: battle ? battle.mainImg : '',
+                  valuePropName: 'value',
+                  rules: [{ required: true }]
+              })}
+              errors={getFieldError('mainImg')}
             />
           </div>
           <div className="panel">

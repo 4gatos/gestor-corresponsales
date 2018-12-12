@@ -37,7 +37,7 @@ function delete_cookie(name) {
 }
 
 function logout(history) {
-  fetch(`${apiUrl}/session`, { method: 'delete' })
+  fetch(`${apiUrl}/session`, { method: 'delete', credentials: 'include' },)
       .then(response => {
         if (response.status === 204) {
           delete_cookie('connect.sid');
@@ -74,8 +74,8 @@ const Menu = ({ history }) => {
               <MenuSubTab link="/gestor/batallas/nueva-batalla" text="Añadir batalla" />
             </ul>
           </MenuTab>
-          <MenuTab icon="icon-lens" text="Grupo de investigación" link="/gestor/grupo-de-investigacion" urls={investigationUrls} />
-          <MenuTab icon="icon-historical-frame" text="Marco histórico" link="/gestor/marco-historico" urls={historicUrls} />
+          {/*<MenuTab icon="icon-lens" text="Grupo de investigación" link="/gestor/grupo-de-investigacion" urls={investigationUrls} />
+          <MenuTab icon="icon-historical-frame" text="Marco histórico" link="/gestor/marco-historico" urls={historicUrls} /> */}
           <MenuTab icon="icon-media" text="Medios" link="/gestor/medios" urls={mediaUrls} />
           <li className="menu-tab logout-tab" onClick={() => logout(history)}>
             <div className="logout">
