@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import Icon from '../Basics/Icon';
 import Loader from '../Basics/Loader';
+import Tip from '../Basics/Tip';
 
 const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/plasocloudinary/image/upload';
 const CLOUDINARY_PRESET = 'cnpiojmp';
@@ -51,6 +52,9 @@ class Gallery extends Component {
     if (loading) return <Loader />
     return (
       <div className="media">
+        <Tip>
+          Si al subir una foto tarda en estar disponible, espere un momento y recargue la página
+        </Tip>
         <div className="file-input-wrapper">
           <input id="file" type="file" onChange={this.onChange} ref={this.fileInput} />
           {this.fileInput.current && this.fileInput.current.files.length > 0

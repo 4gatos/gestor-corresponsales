@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getErrorText } from '../../config/constants';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 import ModalGallery from '../Elements/ModalGallery';
 
 class ImgFormField extends Component {
@@ -62,7 +63,20 @@ class ImgFormField extends Component {
           min={min}
           max={max}
         />
-        <button type="button" className="btn-img" onClick={this.openGallery}>Añadir / cambiar foto</button>
+        <div className="media-gallery start">
+          <CloudinaryContext cloudName="plasocloudinary">
+            {value && (
+              <div
+                key={value}
+                id={value}
+                className="media-img"
+              >
+                <Image publicId={value} />
+              </div>
+            )}
+            <button type="button" className="btn-img" onClick={this.openGallery}>Añadir / cambiar foto</button>
+          </CloudinaryContext>
+        </div>
         {galleryOpen && (
           <ModalGallery onCancel={this.closeGallery} onAccept={this.setImgValue} />
         )}

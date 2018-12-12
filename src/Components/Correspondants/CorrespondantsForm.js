@@ -49,6 +49,7 @@ class CorrespondantsForm extends Component {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(fields)
           })
             .then(response => {

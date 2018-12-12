@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { CloudinaryContext, Image } from 'cloudinary-react';
 import Icon from '../Basics/Icon';
 import { Link } from 'react-router-dom';
 
@@ -28,10 +29,12 @@ class List extends PureComponent {
                 key={item.slug || item.id}
               >
                 <div className="item-info">
-                  {!noImg && (
-                    <div className="item-img">
-                      <img src="https://via.placeholder.com/50" alt={item.name} />
-                    </div>
+                  {!noImg && item.mainImg && (
+                    <CloudinaryContext cloudName="plasocloudinary">
+                      <div className="item-img">
+                        <Image publicId={item.mainImg} />
+                      </div>
+                    </CloudinaryContext>
                   )}
                   {item.name}{' '}{item.surname && item.surname}{item.role ? ` - Rol: ${item.role}` : ''}
                 </div>
