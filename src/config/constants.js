@@ -1,4 +1,4 @@
-export const apiUrl = 'https://api-corresponsales.herokuapp.com/';
+export const apiUrl = 'https://api-corresponsales.herokuapp.com';
 
 export const ROUTES = [
   {
