@@ -26,7 +26,7 @@ const MainContent = () => {
         ))}
       </Switch>
       <Switch>
-        <Route exact path='/gestor' component={Home} />
+        {/* <Route exact path='/gestor' component={Home} /> */}
         <Route path='/gestor/usuario' component={User} />
         <Route path='/gestor/corresponsales' component={Correspondants} />
         <Route path='/gestor/batallas' component={Battles} />

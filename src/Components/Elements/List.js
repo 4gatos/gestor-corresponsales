@@ -3,6 +3,15 @@ import { CloudinaryContext, Image } from 'cloudinary-react';
 import Icon from '../Basics/Icon';
 import { Link } from 'react-router-dom';
 
+function getRole(role) {
+  if (role === 'admin') {
+    return 'Administrador';
+  } else if (role === 'user') {
+    return 'Usuario';
+  }
+  return 'Usuario';
+}
+
 class List extends PureComponent {
   constructor(props) {
     super(props);
@@ -36,7 +45,7 @@ class List extends PureComponent {
                       </div>
                     </CloudinaryContext>
                   )}
-                  {item.name}{' '}{item.surname && item.surname}{item.role ? ` - Rol: ${item.role}` : ''}
+                  {item.name}{' '}{item.surname && item.surname}{item.email ? ` - ${item.email}` : ''}{item.role ? ` - ${getRole(item.role)}` : ''}
                 </div>
                 {!noActions && (
                   <div className="item-actions">
