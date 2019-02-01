@@ -98,7 +98,7 @@ class CorrespondantsForm extends Component {
         <h2>Añade un nuevo corresponsal</h2>
         <form>
           <div className="panel">
-            <p className="panel-title">Datos básicos de la batalla</p>
+            <p className="panel-title">Datos básicos del corresponsal</p>
             <FormField
               className="full"
               label="Nombre y apellidos"
@@ -213,7 +213,7 @@ class CorrespondantsForm extends Component {
             <p className="panel-title">Descripción geográfica</p>
             <TextArea
               className="full"
-              label="Añade la descripción geográfica de esta batalla"
+              label="Añade la descripción geográfica de este corresponsal"
               id="geographicDescription"
               type="text"
               required

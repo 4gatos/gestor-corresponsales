@@ -58,7 +58,7 @@ class BattleForm extends Component {
           })
             .then(response => {
               if (!match.params.slug) {
-                this.props.history.push('/gestor/batallas/todas');
+                this.props.history.push('/gestor/hitos/todas');
               } else {
                 response.json()
                   .then(battle => {
@@ -81,10 +81,10 @@ class BattleForm extends Component {
     const { getFieldProps, getFieldError } = form;
     return (
       <React.Fragment>
-        <h2>Añade una nueva batalla</h2>
+        <h2>Añade un nuevo hito</h2>
         <form noValidate>
           <div className="panel">
-            <p className="panel-title">Datos básicos de la batalla</p>
+            <p className="panel-title">Datos básicos del hito</p>
             <FormField
               className="full"
               label="Nombre"
@@ -126,7 +126,7 @@ class BattleForm extends Component {
             />
             <FormField
               className="full"
-              label="Duración de la batalla"
+              label="Duración del hito"
               id="duration"
               type="text"
               required
@@ -139,7 +139,7 @@ class BattleForm extends Component {
             />
             <ImgFormField
               className="full"
-              label="Imagen del corresponsal"
+              label="Imagen del hito"
               id="mainImg"
               type="text"
               form={form}
@@ -157,7 +157,7 @@ class BattleForm extends Component {
             <p className="panel-title">Historia</p>
             <TextArea
               className="full"
-              label="Añade la historia de esta batalla"
+              label="Añade la historia de este hito"
               id="history"
               type="text"
               required
@@ -173,7 +173,7 @@ class BattleForm extends Component {
             <p className="panel-title">Descripción geográfica</p>
             <TextArea
               className="full"
-              label="Añade la descripción geográfica de esta batalla"
+              label="Añade la descripción geográfica de este hito"
               id="geographicDescription"
               type="text"
               required
@@ -194,7 +194,7 @@ class BattleForm extends Component {
             <p className="panel-title">Patrimonio arquitectónico</p>
             <TextArea
               className="full"
-              label="Añade información sobre el patrimonio arquitectónico de esta batalla"
+              label="Añade información sobre el patrimonio arquitectónico de este hito"
               id="architecturalDescription"
               type="text"
               {...getFieldProps('architecturalDescription', {
@@ -208,7 +208,7 @@ class BattleForm extends Component {
             <p className="panel-title">Patrimonio natural</p>
             <TextArea
               className="full"
-              label="Añade información sobre el patrimonio natural de esta batalla"
+              label="Añade información sobre el patrimonio natural de este hito"
               id="naturalDescription"
               type="text"
               {...getFieldProps('naturalDescription', {
@@ -222,7 +222,7 @@ class BattleForm extends Component {
             <p className="panel-title">Personas relevantes</p>
             <TextArea
               className="full"
-              label="Añade las personas relevantes que intervienen en esta batalla"
+              label="Añade las personas relevantes que intervienen en este hito"
               id="importantPeople"
               type="text"
               required

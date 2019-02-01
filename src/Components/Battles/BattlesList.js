@@ -30,13 +30,13 @@ class BattlesList extends Component {
     const { loading, battles } = this.state;
     return (
       <React.Fragment>
-        <h2>Lista de batallas</h2>
+        <h2>Lista de hitos</h2>
         {!loading ? (
           <List
             items={battles}
             url={`${apiUrl}/battles`}
-            appUrl="/gestor/batallas"
-            noItemsMsg="No hay batallas"
+            appUrl="/gestor/hitos"
+            noItemsMsg="No hay hitos"
             deleteItemFromList={this.deleteItemFromList}
           />
          ) : <Loader />}

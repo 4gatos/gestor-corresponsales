@@ -39,22 +39,22 @@ export const ROUTES = [
     subtitle: 'Editar corresponsal'
   },
   {
-    path: '/gestor/batallas/todas',
+    path: '/gestor/hitos/todas',
     icon: 'icon-swords',
-    title: 'Batallas',
-    subtitle: 'Editar batallas'
+    title: 'Hitos',
+    subtitle: 'Editar hitos'
   },
   {
-    path: '/gestor/batallas/nueva-batalla',
+    path: '/gestor/hitos/nuevo-hito',
     icon: 'icon-swords',
-    title: 'Batallas',
-    subtitle: 'Añadir batalla'
+    title: 'Hitos',
+    subtitle: 'Añadir hito'
   },
   {
-    path: '/gestor/batallas/:slug',
+    path: '/gestor/hitos/:slug',
     icon: 'icon-swords',
-    title: 'Batallas',
-    subtitle: 'Editar batalla'
+    title: 'Hitos',
+    subtitle: 'Editar hito'
   },
   {
     path: '/gestor/grupo-de-investigacion',

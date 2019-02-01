@@ -16,8 +16,8 @@ const correspondantUrls = [
 ];
 
 const battlesUrls = [
-  '/gestor/batallas/nueva-batalla',
-  '/gestor/batallas/todas',
+  '/gestor/hitos/nuevo-hito',
+  '/gestor/hitos/todas',
 ];
 
 const investigationUrls = [
@@ -68,10 +68,10 @@ const Menu = ({ history }) => {
             <MenuSubTab link="/gestor/corresponsales/nuevo-corresponsal" text="Añadir corresponsal" />
             </ul>
           </MenuTab>
-          <MenuTab icon="icon-swords" text="Batallas" link="/gestor/batallas/todas" urls={battlesUrls}>
+          <MenuTab icon="icon-swords" text="Hitos" link="/gestor/hitos/todas" urls={battlesUrls}>
             <ul>
-              <MenuSubTab link="/gestor/batallas/todas" text="Editar batallas" />
-              <MenuSubTab link="/gestor/batallas/nueva-batalla" text="Añadir batalla" />
+              <MenuSubTab link="/gestor/hitos/todas" text="Editar hitos" />
+              <MenuSubTab link="/gestor/hitos/nuevo-hito" text="Añadir hito" />
             </ul>
           </MenuTab>
           {/*<MenuTab icon="icon-lens" text="Grupo de investigación" link="/gestor/grupo-de-investigacion" urls={investigationUrls} />

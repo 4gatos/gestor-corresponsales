@@ -29,7 +29,7 @@ const MainContent = () => {
         {/* <Route exact path='/gestor' component={Home} /> */}
         <Route path='/gestor/usuario' component={User} />
         <Route path='/gestor/corresponsales' component={Correspondants} />
-        <Route path='/gestor/batallas' component={Battles} />
+        <Route path='/gestor/hitos' component={Battles} />
         <Route path='/gestor/grupo-de-investigacion' component={Investigation} />
         <Route path='/gestor/marco-historico' component={Historic} />
         <Route path='/gestor/medios' component={Media} />

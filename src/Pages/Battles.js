@@ -9,9 +9,9 @@ const Battles = () => {
       <div className="investigation">
         <div className="box mg-top">
           <Switch>
-            <Route exact path="/gestor/batallas/todas" component={BattlesList} />
-            <Route exact path="/gestor/batallas/nueva-batalla" component={BattleForm} />
-            <Route exact path="/gestor/batallas/:slug" component={BattleForm} />
+            <Route exact path="/gestor/hitos/todas" component={BattlesList} />
+            <Route exact path="/gestor/hitos/nuevo-hito" component={BattleForm} />
+            <Route exact path="/gestor/hitos/:slug" component={BattleForm} />
           </Switch>
         </div>
       </div>
