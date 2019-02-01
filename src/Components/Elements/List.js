@@ -49,10 +49,10 @@ class List extends PureComponent {
                 </div>
                 {!noActions && (
                   <div className="item-actions">
-                    <Link to={`${appUrl}/${item.slug}`}>
+                    <Link to={`${appUrl}/${item.slug || item.id}`}>
                       <Icon icon="icon-edit" />
                     </Link>
-                    <button value={item.slug} onClick={this.deleteItem}>
+                    <button value={item.slug || item.id} onClick={this.deleteItem}>
                       <Icon icon="icon-trash" />
                     </button>
                   </div>

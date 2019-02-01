@@ -13,6 +13,20 @@ class UserForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const { match } = this.props;
+    if (match.params.id) {
+      fetch(`${apiUrl}/users/${match.params.id}`, {
+        credentials: 'include'
+      })
+        .then(response => response.json())
+        .then(user => this.setState({
+          user,
+          loading: false,
+        }))
+    }
+  }
+
   onSubmit(e) {
     const { form, match } = this.props;
     e.preventDefault();
@@ -22,8 +36,8 @@ class UserForm extends Component {
           && Object.keys(fieldErrors).some(key => fieldErrors[key].errors.length > 0);
         if (!hasErrors) {
           this.setState({ loading: true });
-          fetch(`${apiUrl}/users${match.params.slug ? `/${match.params.slug}` : ''}`, {
-            method: match.params.slug ? 'PUT' : 'POST',
+          fetch(`${apiUrl}/users${match.params.id ? `/${match.params.id}` : ''}`, {
+            method: match.params.id ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -32,7 +46,7 @@ class UserForm extends Component {
             body: JSON.stringify(fields)
           })
             .then(response => {
-              if (!match.params.slug && response.status === 200) {
+              if (!match.params.id && response.status === 200) {
                 this.props.history.push('/gestor/usuario/todos');
               } else if (response.status === 201) {
                 response.json()
@@ -120,12 +134,24 @@ class UserForm extends Component {
               className="full"
               label="Teléfono"
               id="phone"
-              type="text"
+              type="tel"
               {...getFieldProps('phone', {
                   initialValue: user ? user.phone : '',
                   valuePropName: 'value',
               })}
               errors={getFieldError('phone')}
+            />
+            <FormField
+              className="checkbox"
+              label="Marcar si el usuario es administrador"
+              id="admin"
+              type="checkbox"
+              {...getFieldProps('admin', {
+                  // initialValue: user && user.role === 'admin' ? true : false,
+                  initialValue: true,
+                  valuePropName: 'checked',
+              })}
+              errors={getFieldError('admin')}
             />
           </div>
           {loading ? <Loader /> : (

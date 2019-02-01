@@ -33,8 +33,7 @@ class UserList extends Component {
             items={users}
             url={`${apiUrl}/users`}
             noImg
-            noActions
-            appUrl="/gestor/usuarios"
+            appUrl="/gestor/usuario"
             noItemsMsg="No hay usuarios"
             deleteItemFromList={this.deleteItemFromList}
           />

@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { getErrorText } from '../../config/constants';
 
-class FormField extends PureComponent {
+class FormCheckbox extends Component {
   render() {
     const {
       className,
@@ -14,8 +14,7 @@ class FormField extends PureComponent {
       id,
       label,
       required,
-      errors,
-      checked,
+      errors
     } = this.props;
     const hasErrors = errors && errors.length > 0;
     return (
@@ -28,10 +27,9 @@ class FormField extends PureComponent {
           className={`${value ? 'hasValue' : ''}`}
           autoComplete="off"
           type={type}
-          {...(value ? { value } : null)}
+          value={value}
           disabled={disabled}
           onChange={onChange}
-          {...(checked ? { checked } : null)}
           id={id}
           min={min}
           max={max}
@@ -48,4 +46,4 @@ class FormField extends PureComponent {
   }
 }
 
-export default FormField;
+export default FormCheckbox;

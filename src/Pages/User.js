@@ -13,6 +13,7 @@ const User = () => {
             <Route exact path="/gestor/usuario/mi-cuenta" component={Account} />
             <Route exact path="/gestor/usuario/nuevo-usuario" component={UserForm} />
             <Route exact path="/gestor/usuario/todos" component={UserList} />
+            <Route exact path="/gestor/usuario/:id" component={UserForm} />
           </Switch>
         </div>
       </div>
