@@ -11,6 +11,7 @@ class BattlesList extends Component {
       loading: true,
     }
     this.deleteItemFromList = this.deleteItemFromList.bind(this);
+    this.handleApprove = this.handleApprove.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +26,17 @@ class BattlesList extends Component {
   deleteItemFromList(value) {
     this.setState(prevState => ({ battles: prevState.battles.filter(battles => battles.slug !== value) }))
   }
-  
+
+  handleApprove(value, approve) {
+    this.setState(prevState => {
+      const prevBattles = [...prevState.battles];
+      const battleToChange = prevBattles.find(battle => battle.slug === value);
+      battleToChange.approved = approve;
+
+      return prevBattles;
+    });
+  }
+
   render() {
     const { loading, battles } = this.state;
     return (
@@ -38,6 +49,7 @@ class BattlesList extends Component {
             appUrl="/gestor/hitos"
             noItemsMsg="No hay hitos"
             deleteItemFromList={this.deleteItemFromList}
+            handleApprove={this.handleApprove}
           />
          ) : <Loader />}
       </React.Fragment>

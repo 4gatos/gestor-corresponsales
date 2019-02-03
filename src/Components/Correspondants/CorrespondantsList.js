@@ -11,6 +11,7 @@ class CorrespondantsList extends Component {
       loading: true,
     }
     this.deleteItemFromList = this.deleteItemFromList.bind(this);
+    this.handleApprove = this.handleApprove.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +23,17 @@ class CorrespondantsList extends Component {
   deleteItemFromList(value) {
     this.setState(prevState => ({ correspondants: prevState.correspondants.filter(correspondant => correspondant.slug !== value) }))
   }
-  
+
+  handleApprove(value, approve) {
+    this.setState(prevState => {
+      const prevCorrespondants = [...prevState.correspondants];
+      const correspondantToChange = prevCorrespondants.find(correspondant => correspondant.slug === value);
+      correspondantToChange.approved = approve;
+
+      return prevCorrespondants;
+    });
+  }
+
   render() {
     const { loading, correspondants } = this.state;
     return (
@@ -35,6 +46,7 @@ class CorrespondantsList extends Component {
             appUrl="/gestor/corresponsales"
             noItemsMsg="No hay corresponsales"
             deleteItemFromList={this.deleteItemFromList}
+            handleApprove={this.handleApprove}
           />
          ) : <Loader />}
       </React.Fragment>

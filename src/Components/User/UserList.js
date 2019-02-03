@@ -36,6 +36,7 @@ class UserList extends Component {
             appUrl="/gestor/usuario"
             noItemsMsg="No hay usuarios"
             deleteItemFromList={this.deleteItemFromList}
+            users
           />
          ) : <Loader />}
       </React.Fragment>

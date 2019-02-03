@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { CloudinaryContext, Image } from 'cloudinary-react';
 import Icon from '../Basics/Icon';
 import { Link } from 'react-router-dom';
@@ -12,10 +12,12 @@ function getRole(role) {
   return 'Usuario';
 }
 
-class List extends PureComponent {
+class List extends Component {
   constructor(props) {
     super(props);
     this.deleteItem = this.deleteItem.bind(this);
+    this.approveItem = this.approveItem.bind(this);
+    this.disapproveItem = this.disapproveItem.bind(this);
   }
   
   deleteItem(event) {
@@ -26,8 +28,24 @@ class List extends PureComponent {
       .then(response => response.status === 204 && deleteItemFromList(value));
   }
 
+  approveItem(event) {
+    const { url, handleApprove } = this.props;
+    const { value } = event.currentTarget;
+
+    fetch(`${url}/${value}/approve`, { method: 'put', credentials: 'include' })
+      .then(response => response.status === 201 && handleApprove(value, true));
+  }
+
+  disapproveItem(event) {
+    const { url, handleApprove } = this.props;
+    const { value } = event.currentTarget;
+
+    fetch(`${url}/${value}/disapprove`, { method: 'put', credentials: 'include' })
+      .then(response => response.status === 201 && handleApprove(value, false));
+  }
+
   render() {
-    const { items, noItemsMsg, appUrl, noImg, noActions} = this.props;
+    const { items, noItemsMsg, appUrl, noImg, noActions, users } = this.props;
     return (
       <ul className="list">
         {
@@ -49,6 +67,13 @@ class List extends PureComponent {
                 </div>
                 {!noActions && (
                   <div className="item-actions">
+                    { !users && (
+                      item.approved && !users ? (
+                        <button value={item.slug} onClick={this.disapproveItem}>Despublicar</button>
+                      ) : (
+                        <button value={item.slug} onClick={this.approveItem}>Publicar</button>
+                      )
+                    )}
                     <Link to={`${appUrl}/${item.slug || item.id}`}>
                       <Icon icon="icon-edit" />
                     </Link>
