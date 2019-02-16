@@ -319,50 +319,6 @@ class BattleForm extends Component {
             />
           </div>
           <div className="panel">
-            <p className="panel-title">Patrimonio arquitectónico</p>
-            <TextArea
-              className="full"
-              label="Añade información sobre el patrimonio arquitectónico de este hito"
-              id="architecturalDescription"
-              type="text"
-              {...getFieldProps('architecturalDescription', {
-                  initialValue: '',
-                  valuePropName: 'value',
-              })}
-              errors={getFieldError('architecturalDescription')}
-            />
-          </div>
-          <div className="panel">
-            <p className="panel-title">Patrimonio natural</p>
-            <TextArea
-              className="full"
-              label="Añade información sobre el patrimonio natural de este hito"
-              id="naturalDescription"
-              type="text"
-              {...getFieldProps('naturalDescription', {
-                  initialValue: '',
-                  valuePropName: 'value',
-              })}
-              errors={getFieldError('naturalDescription')}
-            />
-          </div>
-          <div className="panel">
-            <p className="panel-title">Personas relevantes</p>
-            <TextArea
-              className="full"
-              label="Añade las personas relevantes que intervienen en este hito"
-              id="importantPeople"
-              type="text"
-              required
-              {...getFieldProps('importantPeople', {
-                  initialValue: battle ? battle.importantPeople : '',
-                  valuePropName: 'value',
-                  rules: [{ required: true }]
-              })}
-              errors={getFieldError('importantPeople')}
-            />
-          </div>
-          <div className="panel">
             <p className="panel-title">Otros campos</p>
             {otherFields && otherFields.length > 0
               ? (otherFields.map(field => this.createOtherField(field)))
