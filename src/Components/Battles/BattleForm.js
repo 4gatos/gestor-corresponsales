@@ -204,7 +204,6 @@ class BattleForm extends Component {
         }) : []),
       ...otherFieldsArr
     ];
-    console.log(otherFieldsNoFilter);
     const otherFields = otherFieldsNoFilter
       .filter(field => deletedIds.indexOf(field.id) === -1);
     return (

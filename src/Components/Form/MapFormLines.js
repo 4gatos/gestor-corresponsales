@@ -94,8 +94,14 @@ class MapFormLines extends PureComponent {
         }
       };
 
+      console.log(sourceData);
+
+      console.log(this.map.getSource('trace'));
+
       if (this.map && !this.map.getSource('trace')) {
+        console.log('aqui si');
         this.map.on('load', () => {
+          console.log('entra');
           this.map.addSource('trace', { type: 'geojson', data: sourceData });
           this.map.addLayer({
             id: "route",
