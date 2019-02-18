@@ -155,20 +155,17 @@ class CorrespondantsForm extends Component {
 
   onSubmit(e) {
     const { form, match } = this.props;
-    const { coordinates, battle } = this.state;
+    const { coordinates, battle, correspondant } = this.state;
     e.preventDefault();
     form.validateFields(
       (fieldErrors, fields) => {
-        console.log({fieldErrors})
         const hasErrors = (fieldErrors
           && Object.keys(fieldErrors).some(key => fieldErrors[key].errors.length > 0))
-          || !coordinates || coordinates.length === 0;
+          || ((!coordinates || coordinates.length === 0) && (!correspondant || !correspondant.coordinates || correspondant.coordinates.length === 0));
         if (!hasErrors) {
           const finalFields = getCorrespondantFromData(fields);
-          if (coordinates && coordinates.length > 1) {
-            finalFields.coordinates = coordinates;
-          }
           if (coordinates && coordinates.length > 0) {
+            finalFields.coordinates = coordinates;
             finalFields.geographicLat = coordinates[0][1];
             finalFields.geographicLng = coordinates[0][0];
           }
@@ -176,31 +173,29 @@ class CorrespondantsForm extends Component {
             finalFields.battle = battle;
           }
 
-          console.log(finalFields);
-          // this.setState({ loading: true });
-          // fetch(`${apiUrl}/correspondants${match.params.slug ? `/${match.params.slug}` : ''}`, {
-          //   method: match.params.slug ? 'PUT' : 'POST',
-          //   headers: {
-          //     'Accept': 'application/json',
-          //     'Content-Type': 'application/json'
-          //   },
-          //   credentials: 'include',
-          //   body: JSON.stringify(fields)
-          // })
-          //   .then(response => {
-          //     if (!match.params.slug) {
-          //       this.props.history.push('/gestor/corresponsales/todos');
-          //     } else {
-          //       response.json()
-          //         .then(correspondant => {
-          //           this.setState({ loading: false, correspondant })
-          //         });
-          //     }
-          //   })
-          //   .catch(error => {
-          //     console.log(error);
-          //     this.setState({ loading: false });
-          //   });
+          this.setState({ loading: true });
+          fetch(`${apiUrl}/correspondants${match.params.slug ? `/${match.params.slug}` : ''}`, {
+            method: match.params.slug ? 'PUT' : 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(finalFields)
+          })
+            .then(response => {
+              if (!match.params.slug) {
+                this.props.history.push('/gestor/corresponsales/todos');
+              } else {
+                response.json()
+                  .then(correspondant => {
+                    this.setState({ loading: false, correspondant })
+                  });
+              }
+            })
+            .catch(error => {
+              this.setState({ loading: false });
+            });
         }
       }
     );
@@ -211,8 +206,8 @@ class CorrespondantsForm extends Component {
     const { form } = this.props;
     const { getFieldProps, getFieldError } = form;
     const otherFieldsNoFilter = [
-      ...(battle && battle.otherFields && battle.otherFields.length > 0
-        ? battle.otherFields.map(field => {
+      ...(correspondant && correspondant.otherFields && correspondant.otherFields.length > 0
+        ? correspondant.otherFields.map(field => {
           return {
             id: field._id,
             body: field.body,

@@ -71,7 +71,14 @@ class MapFormBasic extends Component {
       }
       this.marker = new mapboxgl.Marker().setLngLat([markerLng, markerLat]).addTo(this.map);
     } else if (this.map && lat && lng) {
-      this.marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(this.map);
+      if(!this.map.loaded()) {
+        this.map.on('load', () => {
+          this.marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(this.map);
+          this.map.flyTo({ center: [lng, lat] });
+        })
+      } else {
+        this.marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(this.map);
+      }
     }
     return (
       <div className="map-with-coordinates">

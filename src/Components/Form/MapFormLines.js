@@ -84,7 +84,11 @@ class MapFormLines extends PureComponent {
   render() {
     const { coordinates } = this.state;
     const { routeCoordinates } = this.props;
+    if (routeCoordinates) {
+      console.log(routeCoordinates[0]);
+    }
     if (((coordinates && coordinates.length > 0) || (routeCoordinates && routeCoordinates.length > 0)) && this.map) {
+      console.log('entraa');
       const sourceData = {
         'type': 'Feature',
         'properties': {},
@@ -94,14 +98,16 @@ class MapFormLines extends PureComponent {
         }
       };
 
-      console.log(sourceData);
-
-      console.log(this.map.getSource('trace'));
-
-      if (this.map && !this.map.getSource('trace')) {
-        console.log('aqui si');
+      if (this.map && this.map.loaded()) {
+        if (this.marker) {
+          this.marker.remove();
+        }
+        const point = coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0];
+        this.marker = new mapboxgl.Marker().setLngLat([point[0], point[1]]).addTo(this.map);
+      } else if (this.map) {
         this.map.on('load', () => {
-          console.log('entra');
+          const point = coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0];
+          this.marker = new mapboxgl.Marker().setLngLat([point[0], point[1]]).addTo(this.map);
           this.map.addSource('trace', { type: 'geojson', data: sourceData });
           this.map.addLayer({
             id: "route",
@@ -112,10 +118,25 @@ class MapFormLines extends PureComponent {
                 "line-opacity": 0.75,
                 "line-width": 5
             }
-          });
-          this.map.jumpTo({ 'center': coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0], 'zoom': 9 });
+          })
+          this.map.jumpTo({ 'center': coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0], 'zoom': 6 });
         })
-      } else {
+      }
+
+      if (this.map && this.map.loaded() && !this.map.getSource('trace')) {
+          this.map.addSource('trace', { type: 'geojson', data: sourceData });
+          this.map.addLayer({
+            id: "route",
+            type: "line",
+            source: "trace",
+            paint: {
+                "line-color": "#00A8E1",
+                "line-opacity": 0.75,
+                "line-width": 5
+            }
+          })
+          this.map.jumpTo({ 'center': coordinates && coordinates.length > 0 ? coordinates[0] : routeCoordinates[0], 'zoom': 6 });
+      } else if (this.map.loaded()) {
         this.map.getSource('trace').setData(sourceData);
       }
     }
@@ -136,7 +157,7 @@ class MapFormLines extends PureComponent {
               ))}
             </div>
           )}
-          {(!coordinates || coordinates.length === 0) && routeCoordinates && routeCoordinates.length > 1 && (
+          {(!coordinates || coordinates.length === 0) && routeCoordinates && routeCoordinates.length > 0 && (
             <div className="coordinates-list">
               {routeCoordinates.map(coordinate => (
                 <div className="coordinate-item" key={coordinate}>
@@ -146,7 +167,7 @@ class MapFormLines extends PureComponent {
               ))}
             </div>
           )}
-          {coordinates && coordinates.length > 1 && (
+          {coordinates && coordinates.length > 0 && (
             <button className="btn btn-primary mg-top-small" onClick={this.assignRoute}>
               Asignar marcador
             </button>
