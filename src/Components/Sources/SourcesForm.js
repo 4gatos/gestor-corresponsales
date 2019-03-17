@@ -239,11 +239,9 @@ class SourcesForm extends Component {
               label="Fecha del texto"
               id="date"
               type="text"
-              required
               {...getFieldProps('date', {
                   initialValue: source ? source.date : '',
                   valuePropName: 'value',
-                  rules: [{ required: true }]
               })}
               errors={getFieldError('date')}
             />

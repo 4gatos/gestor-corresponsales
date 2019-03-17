@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NewspapersList from '../Components/Newspapers/NewspapersList';
-import BattleForm from '../Components/Battles/BattleForm';
+import NewspapersForm from '../Components/Newspapers/NewspapersForm';
 
 const Newspapers = () => {
   return (
@@ -10,8 +10,8 @@ const Newspapers = () => {
         <div className="box mg-top">
           <Switch>
             <Route exact path="/gestor/periodicos/todos" component={NewspapersList} />
-            <Route exact path="/gestor/periodicos/nuevo-periodico" component={BattleForm} />
-            <Route exact path="/gestor/periodicos/:slug" component={BattleForm} />
+            <Route exact path="/gestor/periodicos/nuevo-periodico" component={NewspapersForm} />
+            <Route exact path="/gestor/periodicos/:slug" component={NewspapersForm} />
           </Switch>
         </div>
       </div>

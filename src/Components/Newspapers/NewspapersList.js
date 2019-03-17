@@ -26,7 +26,7 @@ class NewspapersList extends Component {
 
   handleApprove(value, approve) {
     this.setState(prevState => {
-      const prevNewspapers = [...prevState.correspondants];
+      const prevNewspapers = [...prevState.newspapers];
       const newspaperToChange = prevNewspapers.find(newspaper => newspaper.slug === value);
       newspaperToChange.approved = approve;
 
