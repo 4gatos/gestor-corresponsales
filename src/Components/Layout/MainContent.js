@@ -3,11 +3,13 @@ import Header from '../Basics/Header';
 import HeaderSmall from '../Basics/HeaderSmall';
 import { Route, Switch } from "react-router-dom";
 import User from '../../Pages/User';
-import Home from '../../Pages/Home';
-import Investigation from '../../Pages/Investigation';
-import Historic from '../../Pages/Historic';
+// import Home from '../../Pages/Home';
+// import Investigation from '../../Pages/Investigation';
+// import Historic from '../../Pages/Historic';
 import Correspondants from '../../Pages/Correspondants';
 import Battles from '../../Pages/Battles';
+import Sources from '../../Pages/Sources';
+import Newspapers from '../../Pages/Newspapers';
 import Media from '../../Pages/Media';
 import { ROUTES } from '../../config/constants';
 
@@ -30,8 +32,10 @@ const MainContent = () => {
         <Route path='/gestor/usuario' component={User} />
         <Route path='/gestor/corresponsales' component={Correspondants} />
         <Route path='/gestor/hitos' component={Battles} />
-        <Route path='/gestor/grupo-de-investigacion' component={Investigation} />
-        <Route path='/gestor/marco-historico' component={Historic} />
+        <Route path='/gestor/fuentes' component={Sources} />
+        <Route path='/gestor/periodicos' component={Newspapers} />
+        {/* <Route path='/gestor/grupo-de-investigacion' component={Investigation} /> */}
+        {/* <Route path='/gestor/marco-historico' component={Historic} /> */}
         <Route path='/gestor/medios' component={Media} />
       </Switch>
     </div>

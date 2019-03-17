@@ -20,6 +20,16 @@ const battlesUrls = [
   '/gestor/hitos/todas',
 ];
 
+const sourcesUrls = [
+  '/gestor/fuentes/nueva-fuente',
+  '/gestor/fuentes/todas',
+];
+
+const newspapersUrls = [
+  '/gestor/periodicos/nuevo-periodico',
+  '/gestor/periodicos/todos',
+];
+
 const investigationUrls = [
   '/gestor/grupo-de-investigacion',
 ];
@@ -32,15 +42,10 @@ const mediaUrls = [
   '/gestor/medios',
 ];
 
-function delete_cookie(name) {
-  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
 function logout(history) {
   fetch(`${apiUrl}/session`, { method: 'delete', credentials: 'include' },)
       .then(response => {
         if (response.status === 204) {
-          delete_cookie('connect.sid');
           history.push('/');
         }
       });
@@ -72,6 +77,18 @@ const Menu = ({ history }) => {
             <ul>
               <MenuSubTab link="/gestor/hitos/todas" text="Editar hitos" />
               <MenuSubTab link="/gestor/hitos/nuevo-hito" text="Añadir hito" />
+            </ul>
+          </MenuTab>
+          <MenuTab icon="icon-lens" text="Fuentes" link="/gestor/fuentes/todas" urls={sourcesUrls}>
+            <ul>
+              <MenuSubTab link="/gestor/fuentes/todas" text="Editar fuentes" />
+              <MenuSubTab link="/gestor/fuentes/nueva-fuente" text="Añadir fuente" />
+            </ul>
+          </MenuTab>
+          <MenuTab icon="icon-newspaper" text="Periódicos" link="/gestor/periodicos/todos" urls={newspapersUrls}>
+            <ul>
+              <MenuSubTab link="/gestor/periodicos/todos" text="Editar periódicos" />
+              <MenuSubTab link="/gestor/periodicos/nuevo-periodico" text="Añadir periódico" />
             </ul>
           </MenuTab>
           {/*<MenuTab icon="icon-lens" text="Grupo de investigación" link="/gestor/grupo-de-investigacion" urls={investigationUrls} />
