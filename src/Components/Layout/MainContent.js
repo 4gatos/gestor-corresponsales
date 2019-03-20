@@ -9,6 +9,7 @@ import User from '../../Pages/User';
 import Correspondants from '../../Pages/Correspondants';
 import Battles from '../../Pages/Battles';
 import Sources from '../../Pages/Sources';
+import GroupSources from '../../Pages/GroupSources';
 import Newspapers from '../../Pages/Newspapers';
 import Media from '../../Pages/Media';
 import { ROUTES } from '../../config/constants';
@@ -33,6 +34,7 @@ const MainContent = () => {
         <Route path='/gestor/corresponsales' component={Correspondants} />
         <Route path='/gestor/hitos' component={Battles} />
         <Route path='/gestor/fuentes' component={Sources} />
+        <Route path='/gestor/grupo-fuentes' component={GroupSources} />
         <Route path='/gestor/periodicos' component={Newspapers} />
         {/* <Route path='/gestor/grupo-de-investigacion' component={Investigation} /> */}
         {/* <Route path='/gestor/marco-historico' component={Historic} /> */}

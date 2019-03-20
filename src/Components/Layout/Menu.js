@@ -25,6 +25,11 @@ const sourcesUrls = [
   '/gestor/fuentes/todas',
 ];
 
+const groupSourcesUrls = [
+  '/gestor/grupo-fuentes/nueva-fuente',
+  '/gestor/grupo-fuentes/todas',
+];
+
 const newspapersUrls = [
   '/gestor/periodicos/nuevo-periodico',
   '/gestor/periodicos/todos',
@@ -83,6 +88,12 @@ const Menu = ({ history }) => {
             <ul>
               <MenuSubTab link="/gestor/fuentes/todas" text="Editar fuentes" />
               <MenuSubTab link="/gestor/fuentes/nueva-fuente" text="Añadir fuente" />
+            </ul>
+          </MenuTab>
+          <MenuTab icon="icon-lens" text="Grupo de fuentes" link="/gestor/grupo-fuentes/todas" urls={groupSourcesUrls}>
+            <ul>
+              <MenuSubTab link="/gestor/grupo-fuentes/todas" text="Editar grupos" />
+              <MenuSubTab link="/gestor/grupo-fuentes/nueva-fuente" text="Añadir grupo" />
             </ul>
           </MenuTab>
           <MenuTab icon="icon-newspaper" text="Periódicos" link="/gestor/periodicos/todos" urls={newspapersUrls}>
