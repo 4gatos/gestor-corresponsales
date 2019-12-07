@@ -84,7 +84,7 @@ const Menu = ({ history }) => {
               <MenuSubTab link="/gestor/hitos/nuevo-hito" text="Añadir hito" />
             </ul>
           </MenuTab>
-          <MenuTab icon="icon-lens" text="Fuentes" link="/gestor/fuentes/todas" urls={sourcesUrls}>
+          {/* <MenuTab icon="icon-lens" text="Fuentes" link="/gestor/fuentes/todas" urls={sourcesUrls}>
             <ul>
               <MenuSubTab link="/gestor/fuentes/todas" text="Editar fuentes" />
               <MenuSubTab link="/gestor/fuentes/nueva-fuente" text="Añadir fuente" />
@@ -95,7 +95,7 @@ const Menu = ({ history }) => {
               <MenuSubTab link="/gestor/grupo-fuentes/todas" text="Editar grupos" />
               <MenuSubTab link="/gestor/grupo-fuentes/nueva-fuente" text="Añadir grupo" />
             </ul>
-          </MenuTab>
+          </MenuTab> */}
           <MenuTab icon="icon-newspaper" text="Periódicos" link="/gestor/periodicos/todos" urls={newspapersUrls}>
             <ul>
               <MenuSubTab link="/gestor/periodicos/todos" text="Editar periódicos" />
@@ -104,7 +104,7 @@ const Menu = ({ history }) => {
           </MenuTab>
           {/*<MenuTab icon="icon-lens" text="Grupo de investigación" link="/gestor/grupo-de-investigacion" urls={investigationUrls} />
           <MenuTab icon="icon-historical-frame" text="Marco histórico" link="/gestor/marco-historico" urls={historicUrls} /> */}
-          <MenuTab icon="icon-media" text="Medios" link="/gestor/medios" urls={mediaUrls} />
+          <MenuTab icon="icon-media" text="Recursos" link="/gestor/medios" urls={mediaUrls} />
           <li className="menu-tab logout-tab" onClick={() => logout(history)}>
             <div className="logout">
               <span className="tab-text">Cerrar sesión</span>
